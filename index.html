@@ -1,36 +1,41 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Compeleted]May 7,2024 Apple Event Presentation (PowerPoint Version)</title>
+    <title>PPT Player</title>
+    <style>
+        #pptContainer {
+            width: 100%;
+            height: 90vh;
+        }
+    </style>
 </head>
 <body>
     <h1>PPT Player</h1>
     <label for="pptUrl">Enter PPT URL:</label>
-    <input type="text" id="pptUrl">
+    <input type="text" id="pptUrl" value="http://starsailsclover.github.io/AppleEvent-May7-2024-keynote/109.122.32.11/AppleEvent-May-7-2024-English.pptx">
     <button onclick="loadPPT()">Load PPT</button>
     
-    <div id="pptContent"></div>
+    <div id="pptContainer"></div>
 
     <script>
         async function loadPPT() {
             const pptUrl = document.getElementById('pptUrl').value;
-            const response = await fetch('/loadppt', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ pptUrl })
-            });
-            const data = await response.json();
+            const pptContainer = document.getElementById('pptContainer');
+            
+            // Clear previous content
+            pptContainer.innerHTML = '';
 
-            if (data.success) {
-                const pptContent = document.getElementById('pptContent');
-                pptContent.innerHTML = JSON.stringify(data.ppt, null, 2);
-            } else {
-                alert('Failed to load PPT');
-            }
+            // Create iframe element
+            const iframe = document.createElement('iframe');
+            iframe.src = pptUrl;
+            iframe.width = '100%';
+            iframe.height = '100%';
+            iframe.style.border = 'none';
+
+            // Append iframe to container
+            pptContainer.appendChild(iframe);
         }
     </script>
 </body>
