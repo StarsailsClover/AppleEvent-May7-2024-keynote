@@ -1,42 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PPT Player</title>
-    <style>
-        #pptContainer {
-            width: 100%;
-            height: 90vh;
-        }
-    </style>
+    <link rel="icon" href="icon.png" type="image/png">
+    <title>[未完善]PPTX Viewer</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>PPT Player</h1>
-    <label for="pptUrl">Enter PPT URL:</label>
-    <input type="text" id="pptUrl" value="http://starsailsclover.github.io/AppleEvent-May7-2024-keynote/109.122.32.11/AppleEvent-May-7-2024-English.pptx">
-    <button onclick="loadPPT()">Load PPT</button>
-    
-    <div id="pptContainer"></div>
+    <header>
+        <div class="navbar">
+            <div class="logo">这个项目还不够完善，如果你是因为2024年5月的Apple发布会来的可以点击旁边的下载按钮</div>
+            <nav>
+                <a href="https://github.com/StarsailsClover/AppleEvent-May7-2024-keynote">Github项目</a>
+                <a href="/109.122.32.11/AppleEvent-May-7-2024-English.pptx">[火热]下载</a>
+                <a href="https://github.com/StarsailsClover">个人Github</a>
+                <a href="https://starsailsclover.github.io/StarsailsClover/">个人主页</a>
+                <button id="theme-toggle">深色/浅色</button>
+                <button id="login">登录</button>
+                <button id="register">注册</button>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <h1>[未完善]PPTX Viewer</h1>
+        <button id="file-select">选择文件</button>
+        <div id="ppt-container"></div>
+        <button id="fullscreen">全屏播放</button>
+    </div>
 
-    <script>
-        async function loadPPT() {
-            const pptUrl = document.getElementById('pptUrl').value;
-            const pptContainer = document.getElementById('pptContainer');
-            
-            // Clear previous content
-            pptContainer.innerHTML = '';
+    <!-- 模态框 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div id="modal-body"></div>
+        </div>
+    </div>
 
-            // Create iframe element
-            const iframe = document.createElement('iframe');
-            iframe.src = pptUrl;
-            iframe.width = '100%';
-            iframe.height = '100%';
-            iframe.style.border = 'none';
-
-            // Append iframe to container
-            pptContainer.appendChild(iframe);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
